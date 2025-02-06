@@ -1,101 +1,103 @@
+'use client'
 import Image from "next/image";
+// import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Raleway } from 'next/font/google';
+import { useState } from "react";
+import { ArrowRight, Star, StarIcon, StarOff } from "lucide-react";
+import { FaTools, FaGem, FaTruck } from "react-icons/fa"; // 
+import Button from "@/components/ui/button2";
+const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isClicked, setIsClicked] = useState(1)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <>
+    {/* hero section  */}
+    <section  className="w-[97%] mx-auto  max-h-[88vh]">
+      <div className="sm:grid grid-cols-12 space-y-6 sm:space-y-0 grid-row-4 gap-x-12 gap-y-4 p-8 pb-4 bg-[#f6f4f4] rounded-lg justify-between items-center">
+
+        <div className="flex flex-col gap-4  text-left sm:col-span-4 md:col-span-3 items-start">
+
+          <p className={`text-5xl sm:text-3xl lg:text-4xl font-bold ${raleway.className}`}>
+          Timeless  <span className="border-[3px]  inline-block  border-[#f3a63a] px-2 text-[#e79018] rounded-lg origin-center transform -rotate-[4deg]">Elegance</span>Unmatched Comfort 
+          </p>
+          <p className="hidden sm:block"> Beautifully Crafted Furniture That Brings Comfort and Style Home</p>
+          <Button text="Shop Now"/>
+         
+       
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+       
+         <div className="row-span-3 px-8 py-8 w-[90%] ml-auto col-span-10  sm:col-span-8  md:col-span-6 bg-gradient-to-l from-[#edad53]">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            className="rounded-2xl  "
+            src="/images/sofa1.jpg"
+            width={200}
+            height={100}
+            alt='sofa'
+            layout="responsive"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+
+        <div className="md:row-span-3 md:col-span-3 col-span-12 ml-auto row-span-1 w-[90%] sm:col-span-4 sm:-ml-28  md:ml-0 order-4 md:order-3 flex md:flex-col  md:gap-4">
+          <div className={cn("cursor-pointer p-4 rounded-xl  duration-500", { "text-white bg-[#e79018]": isClicked == 1 })} onClick={() => setIsClicked(1)}>
+            <p className={`font-bold ${raleway.className} text-lg md:text-xl`}>Sofa</p>
+            <p className={cn("text-md text-[#444] hidden md:block", {"text-white":isClicked==1})} >Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+
+          <div className={cn("cursor-pointer p-4 rounded-xl duration-500", { "text-white bg-[#e79018]": isClicked == 2 })} onClick={() => setIsClicked(2)}>
+
+            <p className={`font-bold ${raleway.className} text-lg md:text-xl`}>BedRoom</p>
+            <p className={cn("text-md text-[#444] hidden md:block", {"text-white":isClicked==2})} >Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+
+          <div className={cn("cursor-pointer p-4 rounded-xl duration-500 ", { "text-white bg-[#e79018]": isClicked == 3 })} onClick={() => setIsClicked(3)}>
+
+            <p className={`font-bold ${raleway.className} text-lg md:text-xl`}>Kichen</p>
+            <p className={cn("text-md text-[#444] hidden md:block", {"text-white":isClicked==3})} >Lorem ipsum dolor sit amet consectetur.</p>
+          </div>
+        </div>
+           <div className="social hidden sm:block col-span-8 md:col-span-12 row-span-1 space-x-6 order-3  ">
+
+          <div className=" inline-flex flex-wrap flex-col border-r-2 border-gray-800 pr-3">
+           <h5 className="font-bold text-xl ">8K+</h5>
+             <span className="text-gray-700 text-md">  Happey clients</span>
+             </div>
+           <div className="inline-flex flex-col ">
+            <h5 className="font-bold text-xl ">788+ </h5>
+            <span className="text-gray-700 text-sm">Furnicher Equipment</span> 
+           </div>
+           
+          </div>
+      </div>
+    </section>
+
+
+    {/* <section  className="max-w-[1000px] w-[98%] mx-auto flex  gap-4 ">
+      <h2>What Sets Us Apar</h2>
+    <div className="highlight">
+        <FaTools size={50} /> 
+        <h3>Premium Craftsmanship</h3>
+        <p>Handcrafted with high-quality materials for long-lasting luxury.</p>
+      </div>
+      <div className="highlight">
+        <FaGem size={50} />  */}
+        {/* Design Icon */}
+        {/* <h3>Exclusive Designs</h3>
+        <p>Unique, elegant pieces that redefine interior style.</p>
+      </div>
+      <div className="highlight">
+        <FaTruck size={50} />  */}
+        {/* Shipping Icon */}
+        {/* <h3>Worldwide Shipping</h3>
+        <p>Safe and secure delivery to your doorstep.</p>
+      </div>
+    </section> */}
+
+    </>
   );
 }
