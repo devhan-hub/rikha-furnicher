@@ -3,27 +3,27 @@ import Image from "next/image";
 import { MdSupportAgent } from "react-icons/md";
 import { LuTruck } from "react-icons/lu";
 import { RiGiftLine } from "react-icons/ri";
-
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Raleway } from 'next/font/google';
 import { useState } from "react";
-import { ArrowBigLeftIcon, ArrowBigRightDashIcon, ArrowBigUpDashIcon, ArrowRight, ArrowRightFromLine, ArrowUpRight, ArrowUpRightFromCircle, ArrowUpRightSquare, Star, StarIcon, StarOff } from "lucide-react";
-import { FaTools, FaGem, FaTruck } from "react-icons/fa"; // 
 import Buttons from "@/components/ui/button2";
+
+import { catagory } from "@/lib/mockcatagoryata";
+
 const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
 
 
 export default function Home() {
   const [isClicked, setIsClicked] = useState(1)
-  const [catagoryClicked, setCatagoryCliked] = useState(true)
 
+  
   return (
     <>
       {/* hero section  */}
       <section className="w-[97%] mx-auto  max-h-[88vh]">
-        <div className="sm:grid grid-cols-12 space-y-6 sm:space-y-0 grid-row-4 gap-x-12 gap-y-4 p-8 pb-4 bg-[#FEF8E6] rounded-lg justify-between items-center">
+        <div className="sm:grid grid-cols-12 space-y-6 sm:space-y-0 grid-row-4 gap-x-12 gap-y-4 p-8 pb-4 bg-[#fef9e9] rounded-lg justify-between items-center">
 
           <div className="flex flex-col gap-4  text-left sm:col-span-4 md:col-span-3 items-start">
 
@@ -32,8 +32,6 @@ export default function Home() {
             </p>
             <p className="hidden sm:block"> Beautifully Crafted Furniture That Brings Comfort and Style Home</p>
             <Buttons text="Shop Now" />
-
-
           </div>
 
 
@@ -126,109 +124,34 @@ export default function Home() {
       </section>
 
       {/* catgory section */}
-      <section className=" w-[97%] mx-auto mb-12  bg-[#FAFAFA] rounded-lg">
-        <div className="grid grid-cols-4 items-center justify-between p-4 py-12 w-3/4 mx-auto">
-          <h3 className="col-span-2 text-4xl font-bold">our shope_ <span className="text-[#e79018]">Catagories</span></h3>
-          <div className="col-span-2 space-y-4">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus deleniti ratione maxime dignissimos qui? Neque nesciunt corrupti esse veritatis qui tempora impedit dignissimos, architecto perspiciatis dolor ut fugit quidem sapiente!</p>
-          <Button  className="bg-[#021F15] text-white p-2 rounded-full">All Catagory <ArrowRight/></Button>
-
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-3 justify-evenly items-center px-8 py-12 ">
-
-        <div className={cn("cursor-pointer  shadow-lg py-4 px-6 rounded-lg bg-white flex flex-col gap-0 ",{"min-h-[250px]":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-            <div className={cn("relative z-50 self-center", { "hidden": !catagoryClicked })}>
-              <span className="absolute size-20 bg-[#e79018] top-6  -z-10 right-6 rounded-full opacity-20" />
-              <Image
-                className="  "
-                src="/images/chair.png"
-                width={200}
-                height={100}
-                alt='sofa'
-              />
-            </div>
-            <div className={cn("  relative  " ,{"min-h-[250px] flex":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-              <span className={cn(" text-xl font-extrabold text-black ", { "text-lg font-bold": catagoryClicked == true } ,{"upright  text-white": !catagoryClicked})}>Living Room<span className={cn("hidden bg-[#e79018] text-sm rounded-full  text-[#042D23] p-1  ", { "inline-block mb-1": !catagoryClicked })}>15</span></span>
-              <span className={cn(" text-xl font-bol ml-1", { "text-lg font-bold ": catagoryClicked === true } ,{"upright   text-end ": !catagoryClicked})}>Furnicher</span>
-
-              <div className={cn("relative mt-2  ml-4 text-sm hidden",{"flex justify-between items-center":catagoryClicked})}>
-                <span className="absolute size-2 bg-red-600 top-1/2  rounded-full -left-3 -translate-y-1/2"></span>
-                   120 items available
-                <Button className="bg-red-500  p-2.5 rounded-full text-white" onClick={()=>setCatagoryCliked(!catagoryClicked)}><ArrowUpRight /> </Button>
+      <section className="pt-16 pb-20 bg-[#f4f4f4] space-y-12 w-[98%] mx-auto px-6 rounded-xl">
+        <h1 className="text-4xl font-bold  text-center">our shope_<span className="text-[#e79018]">Catagory</span></h1>
+      <div className="desktop grid grid-col-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center ">
+        {
+          catagory.map((item, index) => (
+            <div className="flex flex-col gap-6 items-center  py-2  shadow-lg flex-wrap   bg-white rounded-lg">
+              <p className="text-2xl font-bold">{item.title}</p>
+              <div className="grid grid-cols-2 gap-4 px-4">
+                {
+                  item.images.map((image , index)=>(
+                    <div key={index}>
+                    <img
+                    className={`w-full bg-[${image.color}] p-2 h-28 object-cover rounded-sm`}
+                    src={image.src}
+                   
+                    alt={image.name}
+                    />
+                    <p className=" text-sm font-medium lowercase text-zinc-700 dark:text-zinc-300">{image.name}</p>
+                    </div>
+                  ))
+                }
               </div>
+              <Button className='my-2'>View Collection</Button>
             </div>
-          </div>
-          <div className={cn("cursor-pointer  shadow-lg py-4 px-6 rounded-lg bg-white flex flex-col gap-4 ",{"min-h-[250px]":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-            <div className={cn("relative z-50 self-center", { "hidden": !catagoryClicked })}>
-              <span className="absolute size-20 bg-[#e79018] top-6  -z-10 right-6 rounded-full opacity-20" />
-              <Image
-                className="  "
-                src="/images/chair.png"
-                width={200}
-                height={100}
-                alt='sofa'
-              />
-            </div>
-            <div className={cn("  relative  " ,{"min-h-[250px] flex":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-              <span className={cn(" text-xl font-extrabold text-black ", { "text-lg font-bold": catagoryClicked == true } ,{"upright  text-white": !catagoryClicked})}>Living Room<span className={cn("hidden bg-[#e79018] text-sm rounded-full  text-[#042D23] p-1  ", { "inline-block mb-1": !catagoryClicked })}>15</span></span>
-              <span className={cn(" text-xl font-bol ml-1", { "text-lg font-bold ": catagoryClicked === true } ,{"upright   text-end ": !catagoryClicked})}>Furnicher</span>
+          ))
+        }
+      </div>
 
-              <div className={cn("relative mt-2  ml-4 text-sm hidden",{"flex justify-between items-center":catagoryClicked})}>
-                <span className="absolute size-2 bg-red-600 top-1/2  rounded-full -left-3 -translate-y-1/2"></span>
-                   120 items available
-                <Button className="bg-red-500  p-2.5 rounded-full text-white" onClick={()=>setCatagoryCliked(!catagoryClicked)}><ArrowUpRight /> </Button>
-              </div>
-            </div>
-          </div>
-
-          <div className={cn("cursor-pointer  shadow-lg py-4 px-6 rounded-lg bg-white flex flex-col gap-4 ",{"min-h-[250px]":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-            <div className={cn("relative z-50 self-center", { "hidden": !catagoryClicked })}>
-              <span className="absolute size-20 bg-[#e79018] top-6  -z-10 right-6 rounded-full opacity-20" />
-              <Image
-                className="  "
-                src="/images/chair.png"
-                width={200}
-                height={100}
-                alt='sofa'
-              />
-            </div>
-            <div className={cn("  relative  " ,{"min-h-[250px] flex":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-              <span className={cn(" text-xl font-extrabold text-black ", { "text-lg font-bold": catagoryClicked == true } ,{"upright  text-white": !catagoryClicked})}>Living Room<span className={cn("hidden bg-[#e79018] text-sm rounded-full  text-[#042D23] p-1  ", { "inline-block mb-1": !catagoryClicked })}>15</span></span>
-              <span className={cn(" text-xl font-bol ml-1", { "text-lg font-bold ": catagoryClicked === true } ,{"upright   text-end ": !catagoryClicked})}>Furnicher</span>
-
-              <div className={cn("relative mt-2  ml-4 text-sm hidden",{"flex justify-between items-center":catagoryClicked})}>
-                <span className="absolute size-2 bg-red-600 top-1/2  rounded-full -left-3 -translate-y-1/2"></span>
-                   120 items available
-                <Button className="bg-red-500  p-2.5 rounded-full text-white" onClick={()=>setCatagoryCliked(!catagoryClicked)}><ArrowUpRight /> </Button>
-              </div>
-            </div>
-          </div>
-
-            <div className={cn("cursor-pointer  shadow-lg py-4 px-6 rounded-lg bg-white flex flex-col gap-4 ",{"min-h-[250px]":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-            <div className={cn("relative z-50 self-center", { "hidden": !catagoryClicked })}>
-              <span className="absolute size-20 bg-[#e79018] top-6  -z-10 right-6 rounded-full opacity-20" />
-              <Image
-                className="  "
-                src="/images/chair.png"
-                width={200}
-                height={100}
-                alt='sofa'
-              />
-            </div>
-            <div className={cn("  relative  " ,{"min-h-[250px] flex":!catagoryClicked},{"min-w-[300px]":catagoryClicked})} onClick={()=>setCatagoryCliked(!catagoryClicked)}>
-              <span className={cn(" text-xl font-extrabold text-black ", { "text-lg font-bold": catagoryClicked == true } ,{"upright  text-white": !catagoryClicked})}>Living Room<span className={cn("hidden bg-[#e79018] text-sm rounded-full  text-[#042D23] p-1  ", { "inline-block mb-1": !catagoryClicked })}>15</span></span>
-              <span className={cn(" text-xl font-bol ml-1", { "text-lg font-bold ": catagoryClicked === true } ,{"upright   text-end ": !catagoryClicked})}>Furnicher</span>
-
-              <div className={cn("relative mt-2  ml-4 text-sm hidden",{"flex justify-between items-center":catagoryClicked})}>
-                <span className="absolute size-2 bg-red-600 top-1/2  rounded-full -left-3 -translate-y-1/2"></span>
-                   120 items available
-                <Button className="bg-red-500  p-2.5 rounded-full text-white" onClick={()=>setCatagoryCliked(!catagoryClicked)}><ArrowUpRight /> </Button>
-              </div>
-            </div>
-          </div>
-
-</div>
       </section>
 
     </>

@@ -33,7 +33,7 @@ const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
 const Header = () => {
   const pathname = usePathname();
   return (
-    <header className=' sticky w-full  bg-white z-50 '>
+    <header className=' sticky w-full  bg-[#FEF8E6] shadow-md z-50 '>
       <div className="flex justify-between items-center h-16  mx-auto max-w-[95%]">
 
         <div className={`${raleway.className} text-[#e88903] font-bold sm:text-2xl  text-xl order-2 md:order-1`}>
