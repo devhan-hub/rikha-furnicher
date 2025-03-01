@@ -11,6 +11,10 @@ import { useState } from "react";
 import Buttons from "@/components/ui/button2";
 
 import { catagory } from "@/lib/mockcatagoryata";
+import { Star } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
+import { mock } from '../lib/mockproductdate'
+import Clock from "@/components/ui/Clock";
 
 const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -18,7 +22,7 @@ const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
 export default function Home() {
   const [isClicked, setIsClicked] = useState(1)
 
-  
+
   return (
     <>
       {/* hero section  */}
@@ -126,33 +130,64 @@ export default function Home() {
       {/* catgory section */}
       <section className="pt-16 pb-20 bg-[#f4f4f4] space-y-12 w-[98%] mx-auto px-6 rounded-xl">
         <h1 className="text-4xl font-bold  text-center">our shope_<span className="text-[#e79018]">Catagory</span></h1>
-      <div className="desktop grid grid-col-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center ">
-        {
-          catagory.map((item, index) => (
-            <div className="flex flex-col gap-6 items-center  py-2  shadow-lg flex-wrap   bg-white rounded-lg">
-              <p className="text-2xl font-bold">{item.title}</p>
-              <div className="grid grid-cols-2 gap-4 px-4">
-                {
-                  item.images.map((image , index)=>(
-                    <div key={index}>
-                    <img
-                    className={`w-full bg-[${image.color}] p-2 h-28 object-cover rounded-sm`}
-                    src={image.src}
-                   
-                    alt={image.name}
-                    />
-                    <p className=" text-sm font-medium lowercase text-zinc-700 dark:text-zinc-300">{image.name}</p>
-                    </div>
-                  ))
-                }
+        <div className="desktop grid grid-col-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-center ">
+          {
+            catagory.map((item, index) => (
+              <div key={index} className="flex flex-col gap-6 items-center  py-2  shadow-lg flex-wrap   bg-white rounded-lg">
+                <p className="text-2xl font-bold">{item.title}</p>
+                <div className="grid grid-cols-2 gap-4 px-4">
+                  {
+                    item.images.map((image, index) =>
+                    (
+
+                      <div key={index}>
+                        <img
+                          className={`w-full bg-[${image.color}]  p-2 h-28 object-cover rounded-sm`}
+                          src={image.src}
+
+                          alt={image.name}
+                        />
+                        <p className=" text-sm font-medium lowercase text-zinc-700 dark:text-zinc-300">{image.name}</p>
+                      </div>
+                    ))
+                  }
+                </div>
+                <Button className='my-2'>View Collection</Button>
               </div>
-              <Button className='my-2'>View Collection</Button>
-            </div>
-          ))
-        }
-      </div>
+            ))
+          }
+        </div>
 
       </section>
+
+      {/* featured section */}
+      <section className="px-12 py-16 space-y-12">
+        <h1 className="text-start text-4xl font-semibold text-blue-950">
+          Featured Products
+          <span><img src="/Images/.line.svg" alt="" /></span>
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+          <ProductCard data={mock} />
+        </div>
+      </section>
+      {/* <section className="px-8 py-12 bg-blue-950">
+       
+        <h2 className="text-white md:text-4xl text-3xl font-bold text-center mb-8">Limited Offer 😲 BIG DISCOUNT <span className="text-red-500">-50%</span></h2>
+          <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center grap-12  px-4">
+           <div className="flex flex-col gap-6  items-start justify-center ">
+           <h4 className="text-white text-3xl ">Luxury L shape sofa</h4>
+           <Clock />
+           <Button  className='bg-white text-black hover:bg-white hover:text-black transform hover:scale-125"'>Shope now</Button>
+           </div>
+           <div className="relative h-60 w-[60%] ">
+           <Image src='/images/clockImage.png' alt="clock_image" layout="fill" objectFit="contain"   />
+           </div>
+          </div>
+      </section>
+
+      <section className="flex items-center justify-center px-12 py-16">
+      
+      </section> */}
 
     </>
   );
