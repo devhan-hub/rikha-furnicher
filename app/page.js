@@ -9,11 +9,19 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Raleway } from 'next/font/google';
 import { useState } from "react";
 import Buttons from "@/components/ui/button2";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 import { catagory } from "@/lib/mockcatagoryata";
 import { Star } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
-import { mock } from '../lib/mockproductdate'
+import { mock ,customer } from '../lib/mockproductdate'
 import Clock from "@/components/ui/Clock";
 
 const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
@@ -170,12 +178,12 @@ export default function Home() {
           <ProductCard data={mock} />
         </div>
       </section>
-      {/* <section className="px-8 py-12 bg-blue-950">
+      <section className="px-8 py-12 bg-blue-950">
        
         <h2 className="text-white md:text-4xl text-3xl font-bold text-center mb-8">Limited Offer 😲 BIG DISCOUNT <span className="text-red-500">-50%</span></h2>
-          <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center grap-12  px-4">
-           <div className="flex flex-col gap-6  items-start justify-center ">
-           <h4 className="text-white text-3xl ">Luxury L shape sofa</h4>
+          <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center md:gap-12  px-4">
+           <div className="flex flex-col md:gap-6 gap-8 items-start md:justify-self-end  justify-center">
+           <h4 className="text-white md:text-3xl text-2xl">Luxury L shape sofa</h4>
            <Clock />
            <Button  className='bg-white text-black hover:bg-white hover:text-black transform hover:scale-125"'>Shope now</Button>
            </div>
@@ -185,9 +193,20 @@ export default function Home() {
           </div>
       </section>
 
-      <section className="flex items-center justify-center px-12 py-16">
+      <section className="px-12 py-16 space-y-12 ">
+        <h1 className="text-start text-5xl font-semibold text-blue-950">
+        New collections
+        </h1>
+       
       
-      </section> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+          <ProductCard data={mock} />
+        </div>
+      </section>
+      {/* testimonials  */}
+   
+
+
 
     </>
   );
