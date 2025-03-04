@@ -1,6 +1,6 @@
 'use client'
-import { EyeClosedIcon, ShoppingBag } from "lucide-react";
-import { Button } from "./ui/button";
+import {  ShoppingBag } from "lucide-react";
+import { Button } from "../ui/button";
 import { Raleway } from 'next/font/google';
 import { Search, User , Menu } from "lucide-react";
 import Link from "next/link";
@@ -28,16 +28,14 @@ import { X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const user = true;
-const raleway = Raleway({ subsets: ['latin'], weight: ['400', '700'] });
 
 const Header = () => {
   const pathname = usePathname();
   return (
-    <header className=' sticky w-full  bg-[#FEF8E6] shadow-md z-50 '>
       <div className="flex justify-between items-center h-16  mx-auto max-w-[95%]">
 
-        <div className={`${raleway.className} text-[#e88903] font-bold sm:text-2xl  text-xl order-2 md:order-1`}>
-          Rikha-Furnicher
+        <div className={`font-cinzel text-[#e88903] font-bold sm:text-4xl  text-3xl order-2 md:order-1`}>
+          Rikha
         </div>
 
         <nav className="hidden items-center justify-between gap-16 md:flex md:order-2 xl:text-lg ">
@@ -70,23 +68,19 @@ const Header = () => {
 
       {/* mobile nav */}
 
-        <div className="flex items-center gap-4 order-1 md:order-3  md:hidden ">
+        <div className="flex  items-center gap-4 order-1 md:order-3  md:hidden  ">
     
           <div className="flex">
-          <Sheet>
+          <Sheet className='z-[999]'>
             <SheetTrigger><Menu/></SheetTrigger>
-            <SheetContent>
+            <SheetContent className='z-[9999]'>
               <SheetHeader>
                 <SheetTitle>
-                <div className={`${raleway.className} text-[#e88903] font-bold sm:text-2xl  text-xl order-2 md:order-1`}>
-               Rikha-Furnicher
+                <div className={`font-cinzel text-[#e88903] font-bold text-4xl text-center mt-6 mb-12   order-2 md:order-1`}>
+                   Rikha
               </div>
-                <X/>
                 </SheetTitle>
-                <SheetDescription>
-                  This action cannot be undone. This will permanently delete your account
-                  and remove your data from our servers.
-                </SheetDescription>
+               
                 <nav className=" ">
           <ul className="flex flex-col items-center justify-center gap-6 no-underline  flex-1">
             <li>
@@ -110,7 +104,6 @@ const Header = () => {
                 Contact
               </Link>
             </li>
-
           </ul>
         </nav>
               </SheetHeader>
@@ -157,9 +150,6 @@ const Header = () => {
         </div>
         </div>
 
-        
-
-    </header >
   )
 }
 
