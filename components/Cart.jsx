@@ -92,8 +92,8 @@ export default function Cart() {
               <h1 className="bg-red-200 px-4 py-2 self-start">hand picked just for you ...</h1>
               {
                 feature.map((item) => (
-                  <div className='flex gap-4 itmes-center   bg-slate-200 py-5 px-6' key={item.id}>
-                    <img src={item.imgUrl.src} alt="" className='w-[50px] h-[50px]' />
+                  <div className='flex  itmes-center border border-black gap-12  bg-slate-200 py-5 px-6' key={item.id}>
+                    <img src={item.imgUrl.src} alt="" className='w-[70px] h-[70px]' />
                     <div className="">
                       <p className='text-xl font-cinzel font-bold uppercase'>{item.productName}</p>
                       <p className='text-lg font-serif font-bold'>${item.quantity * item.price}</p>
