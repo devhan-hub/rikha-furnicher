@@ -1,7 +1,6 @@
 'use client'
 import {  ShoppingBag } from "lucide-react";
 import { Button } from "../ui/button";
-import { Raleway } from 'next/font/google';
 import { Search, User , Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,19 +17,27 @@ import {
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { X } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { openCart } from "@/redux/slices/cartUiSlics";
+import { useDispatch,useSelector } from "react-redux";
 
 const user = true;
 
+
 const Header = () => {
   const pathname = usePathname();
+  const dispatch = useDispatch();
+  const totalQnt = useSelector(state=>state.cart.totalQnt)
+
+  const toggleDrawer =() => {
+    dispatch(openCart())
+  };
+
   return (
       <div className="flex justify-between items-center h-16  mx-auto max-w-[95%]">
 
@@ -47,7 +54,7 @@ const Header = () => {
             </li>
 
             <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/collection' })}>
+              <Link href='/collection' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/collection' })}>
                 Collection
               </Link>
             </li>
@@ -72,7 +79,7 @@ const Header = () => {
     
           <div className="flex">
           <Sheet className='z-[999]'>
-            <SheetTrigger><Menu/></SheetTrigger>
+          <SheetTrigger><Menu/></SheetTrigger>
             <SheetContent className='z-[9999]'>
               <SheetHeader>
                 <SheetTitle>
@@ -143,9 +150,9 @@ const Header = () => {
             <Button className=' text-white hover:bg-[#e79018] hover:scale-110 duration-700'><User size={24} /></Button>
           )}
 
-          <div >
-            <span></span>
-            <Button variant="ghost" size='icon' ><ShoppingBag size={32} /></Button>
+          <div className="relative">
+            <span className="absolute -top-1/2 w-5 h-5 flex items-center justify-center bg-black rounded-full -right-1/2  translate-y-1/4 font-bold text-white">{totalQnt}</span>
+            <button onClick={toggleDrawer} ><ShoppingBag className="" /></button>
           </div>
         </div>
         </div>
