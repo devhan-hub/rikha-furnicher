@@ -5,7 +5,7 @@ import SideNav from "./SideNav";
 const Collection = () => {
 
     return (
-      <div className="flex h-screen flex-col sm:flex-row md:overflow-hidden mx-auto  py-6">
+      <div className="flex  flex-col sm:flex-row md:overflow-hidden mx-auto  py-6">
       <div className="w-full flex-none md:w-64">
           <SideNav />
       </div>
