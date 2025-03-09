@@ -1,11 +1,10 @@
 'use client'
-import { Button } from "./ui/button"
 import Image from "next/legacy/image"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { addCartItem } from "@/redux/slices/cartSlice"
-import { useDispatch , useSelector } from "react-redux"
-
+import { useDispatch  } from "react-redux"
+import { FaShoppingCart } from "react-icons/fa";
 
 
 const ProductCard = ({ data }) => {
@@ -20,30 +19,30 @@ const addToCart =(item)=>{
   }
   dispatch(addCartItem(product))
 }
-
   return (
-
-    data.map((item, index) => (
-      <div className=" flex flex-col gap-8 cursor-pointer p-4" key={index}>
+    data.map((item) => (
+     <div className="p-2 w-[295px] rounded-tr-3xl bg-[#f5f5f5] shadow-sm border " key={item.id}>
+      <div className="flex flex-col size-full justify-center  gap-4">
+      <Link href={`/collection/${item.id}`}>
         <motion.div className="w-full h-60 relative   "  whileHover={{scale:0.9}}>
-          <Image 
+         <Image 
             src={item.imgUrl}
             alt="bed package"
             layout="fill"
             objectFit="contain"
             className="p-3"
           />
-        </motion.div>
-        <div className="flex flex-col gap-2 justify-center">
-          <p className="text-lg text-start font-semibold"><Link href={`/collection/${item.id}`}>{item.productName}</Link></p>
-          {/* <p className="text-center text-sm">{item.desc}</p> */}
-          <p className="text-lg text-start font-semibold">${item.price}</p>
-          <Button   onClick={()=>addToCart(item)}
-           className=' font-semibold hover:bg-[#e79018] hover:scale-110 transition-all  duration-300'>
-            Add to cart
-          </Button>
-        </div>
+         </motion.div>  
+         </Link>      
+         <div className="flex justify-between items-center bg-white  rounded-md shadow-lg px-4">
+          <div className="space-y-1">
+          <p className="font-serif text-lg font-bold">Product Name</p>
+          <p className=" text-lg font-serif font-extrabold">$700</p>
+          </div>
+          <motion.button onClick={()=> addToCart(item)} whileTap={{scale:1.2}} className="bg-red-500 p-2 rounded-full text-xl text-white"><FaShoppingCart className=""/></motion.button>
+         </div>
       </div>
+     </div>
     ))
   )
 }
