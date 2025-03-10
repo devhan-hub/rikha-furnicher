@@ -5,48 +5,58 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Buttons from "@/components/ui/button2";
 import { catagory } from "@/lib/mockcatagoryata";
 import ProductCard from "@/components/ProductCard";
-import { mock, service } from '../lib/mockproductdate'
+import { service } from '../lib/mockproductdate'
 import Clock from "@/components/ui/Clock";
+import { feature } from "@/lib/product";
+import Navbar from "@/components/navbar/Navbar";
 
 
 export default function Home() {
   return (
     <>
       {/* hero section  */}
-      <section className="w-[98%] relative sm:px-12 px-8 sm:pt-10  pb-0 sm:pb-6 mx-auto shadow-md rounded-md  bg-[#fef9e9] space-y-4 ">
-        <div className=" flex flex-col sm:flex-row space-y-2  sm:space-y-0 max-w-[1000px] mx-auto  gap-x-12 gap-y-4  py-16  rounded-lg justify-between items-center">
+      <section className="bg-heroBack h-max">
+        <div className="container  ">
+          <div className=" relative py-2">
+          <div className="absolute top-14 -right-24 opacity-10 text-[120px] font-bold z-20 text-gray-500 overflow-hidden  flex items-center justify-center">
+                  <span className="">FURNITURE</span>
+                </div>
+          <div className="md:absolute inset-y-0 right-0  w-2/5 bg-secondary overflow-hidden z-0 " />
+         <Navbar />
+        <main className=" px-4 relative">
+          <div className="flex flex-col items-center justify-center md:flex-row ">
+            <div className="w-full  md:w-1/2 pt-12 pb-4 px-4 lg:pt-24 flex flex-col  gap-10 md:mt-0 mt-6">
+              <h1 className="text-5xl md:text-6xl  font-bold leading-tight">
+                <span className="">Timeless</span>
+                <span className="block text-[#e79018]">_Elegance</span>
+                <span className="block">Unmatched</span>
+                <span className="block">Comfort</span>
+              </h1>
 
-          <div className="flex flex-col gap-4  text-left sm:col-span-6 col-span-6  sm:items-start items-center">
+              <Buttons text="Shop Now" />
 
-            <p className={`text-3xl sm:text-4xl text-center sm:text-start lg:text-5xl font-bold font-cinzel text-shadow-md`}>
-              Timeless  <span className="border-[3px]  inline-block  border-[#f3a63a] px-2 text-[#e79018] rounded-lg origin-center transform -rotate-[4deg]">Elegance</span>Unmatched Comfort
-            </p>
-            <p className="text-center sm:block"> Beautifully Crafted Furniture That Brings Comfort and Style Home</p>
-            <Buttons text="Shop Now" />
+              <div className="hidden md:flex mt-6 pt-8 border-t border-gray-300  justify-self-end mb-auto">
+                <div className="border-r border-gray-300 pr-12">
+                  <h3 className=" text-3xl font-bold">778k+</h3>
+                  <p className="text-gray-600 text-sm">
+                    Furnicher &<br />Home Equipment
+                  </p>
+                </div>
+
+                <div className="pl-12">
+                  <h3 className="block text-3xl font-bold">8k+</h3>
+                  <p className="text-gray-600 text-sm">Happy Clients<br />More of this</p>
+                </div>
+              </div>
+            </div>    
+           <div className="w-full md:w-1/2 ">
+           <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-secondary md:bg-transparent rounded-lg" >
+                  <Image src='/images/hero3.png' fill alt="heor image" className="object-contain" />
+                </div>
+           </div>
           </div>
-
-          <div className="  ml-auto  w-full   self-start  ">
-            <Image
-              className="rounded-2xl  "
-              src="/images/hero2.png"
-              width={640}
-              height={640}
-              alt='sofa'
-            />
-          </div>
+        </main>
         </div>
-
-        <div className="social hidden sm:block  space-x-6  ">
-
-          <div className=" inline-flex flex-wrap flex-col border-r-2 border-gray-800 pr-3">
-            <h5 className="font-bold text-xl ">8K+</h5>
-            <span className="text-gray-700 text-md">  Happey clients</span>
-          </div>
-          <div className="inline-flex flex-col ">
-            <h5 className="font-bold text-xl ">788+ </h5>
-            <span className="text-gray-700 text-sm">Furnicher Equipment</span>
-          </div>
-
         </div>
       </section>
 
@@ -97,7 +107,7 @@ export default function Home() {
                   }
                 </div>
                 <Button className='my-2'>View Collection</Button>
-              </div> )) }
+              </div>))}
         </div>
       </section>
 
@@ -108,7 +118,7 @@ export default function Home() {
           <span><img src="/Images/.line.svg" alt="" /></span>
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-          <ProductCard data={mock} />
+          <ProductCard data={feature} />
         </div>
       </section>
       <section className="px-8 py-12 bg-custom-gradient">
@@ -132,7 +142,7 @@ export default function Home() {
           New collections
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-          <ProductCard data={mock} />
+          <ProductCard data={feature} />
         </div>
       </section>
 
@@ -163,3 +173,6 @@ export default function Home() {
     </>
   );
 }
+
+
+
