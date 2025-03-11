@@ -1,161 +1,70 @@
 'use client'
-import {  ShoppingBag } from "lucide-react";
-import { Button } from "../ui/button";
-import { Search, User , Menu } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
+import { Search, User, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { openCart } from "@/redux/slices/cartUiSlics";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RiArmchairLine } from "react-icons/ri";
+import { navData } from "@/lib/navData";
+import MobileNav from "./MobileNav";
 
 const user = true;
-
 
 const Header = () => {
   const pathname = usePathname();
   const dispatch = useDispatch();
-  const totalQnt = useSelector(state=>state.cart.totalQnt)
+  const totalQnt = useSelector(state => state.cart.totalQnt)
 
-  const toggleDrawer =() => {
+  const toggleDrawer = () => {
     dispatch(openCart())
   };
 
   return (
-      <div className="flex justify-between items-center h-16  mx-auto max-w-[95%]">
+    <div className="flex justify-between items-center py-3 px-4   container ">
+      <div className={`font-cinzel text-[#e88903] font-bold md:text-4xl flex items-center gap-1 text-2xl order-2 md:order-1`}>
+        <RiArmchairLine className="text-secondary" />
+        <p>Rikha</p>
+      </div>
+      <nav className="hidden items-center justify-between gap-16 md:flex md:order-2 xl:text-lg ">
+        <ul className="flex items-center justify-center gap-6 no-underline  flex-1">
+          {
+            navData.map((item) => {
+              return (
+                <li key={item.id}>
+                  <Link href={item.path} className={cn('transition-colors text-lg font-cinzel', { "text-[#e88903]": pathname === item.path })}>
+                    {item.name}
+                  </Link>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </nav>
+      <MobileNav/>
+     
+      <div className="flex items-center gap-4 order-3">      
+        <button onClick={toggleDrawer} className="text-gray-600 hidden md:block"  ><Search /></button>
+        {/* user */}
+        {user ? (  
+              <Link href='/account'> 
+              <Avatar className='cursor-pointer text-sm'>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              </Link>
+        ) : (
+          <button  className="text-gray-600"  ><Link href='/account'> <User className="" /></Link></button>
+        )}
 
-        <div className={`font-cinzel text-[#e88903] font-bold sm:text-4xl  text-3xl order-2 md:order-1`}>
-          Rikha
+        <div className="relative  flex items-center">
+          <span className="absolute -top-1/2 w-5 h-5 flex items-center justify-center bg-black rounded-full -right-1/2  translate-y-1/4 font-bold text-white">{totalQnt}</span>
+          <button onClick={toggleDrawer} className="text-gray-600" ><ShoppingBag className="" /></button>
         </div>
-
-        <nav className="hidden items-center justify-between gap-16 md:flex md:order-2 xl:text-lg ">
-          <ul className="flex items-center justify-center gap-6 no-underline  flex-1">
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/' })}>
-                Home
-              </Link>
-            </li>
-
-            <li>
-              <Link href='/collection' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/collection' })}>
-                Collection
-              </Link>
-            </li>
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/about' })}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/contact' })}>
-                Contact
-              </Link>
-            </li>
-
-          </ul>
-        </nav>
-
-
-      {/* mobile nav */}
-
-        <div className="flex  items-center gap-4 order-1 md:order-3  md:hidden  ">
-    
-          <div className="flex">
-          <Sheet className='z-[999]'>
-          <SheetTrigger><Menu/></SheetTrigger>
-            <SheetContent className='z-[9999]'>
-              <SheetHeader>
-                <SheetTitle>
-                <div className={`font-cinzel text-[#e88903] font-bold text-4xl text-center mt-6 mb-12   order-2 md:order-1`}>
-                   Rikha
-              </div>
-                </SheetTitle>
-               
-                <nav className=" ">
-          <ul className="flex flex-col items-center justify-center gap-6 no-underline  flex-1">
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/' })}>
-                Home
-              </Link>
-            </li>
-
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/collection' })}>
-                Collection
-              </Link>
-            </li>
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/about' })}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link href='/' className={cn('transition-colors ', { "text-[#e88903]": pathname === '/contact' })}>
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </nav>
-              </SheetHeader>
-            </SheetContent>
-          </Sheet>
-
-        </div>
-          <Button variant="ghost" className=''>
-            <Search />
-          </Button>
-          </div>
-{/* end of mobile */}
-
-          <div className="flex items-center gap-4 order-3">
-          <Button variant="outline" className='border-[#e79018] border-2 px-2 py-1 self-center md:flex hidden'>
-            <Search /> search...
-          </Button>
-          {/* user */}
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Logout <LogOut /></DropdownMenuItem>
-
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Button className=' text-white hover:bg-[#e79018] hover:scale-110 duration-700'><User size={24} /></Button>
-          )}
-
-          <div className="relative">
-            <span className="absolute -top-1/2 w-5 h-5 flex items-center justify-center bg-black rounded-full -right-1/2  translate-y-1/4 font-bold text-white">{totalQnt}</span>
-            <button onClick={toggleDrawer} ><ShoppingBag className="" /></button>
-          </div>
-        </div>
-        </div>
+      </div>
+    </div>
 
   )
 }
