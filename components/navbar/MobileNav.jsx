@@ -12,7 +12,6 @@ import {
   import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
-
 const MobileNav = () => {
       const pathname = usePathname();
     
@@ -52,7 +51,7 @@ const MobileNav = () => {
 
         </div>
         <Button variant="ghost" className=''>
-          <Search />
+          <Link href='/search'><Search /></Link>
         </Button>
       </div>
       </>

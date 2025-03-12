@@ -23,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between items-center py-3 px-4   container ">
+    <div className="flex justify-between items-center py-3 px-4  ">
       <div className={`font-cinzel text-[#e88903] font-bold md:text-4xl flex items-center gap-1 text-2xl order-2 md:order-1`}>
         <RiArmchairLine className="text-secondary" />
         <p>Rikha</p>
@@ -46,7 +46,7 @@ const Header = () => {
       <MobileNav/>
      
       <div className="flex items-center gap-4 order-3">      
-        <button onClick={toggleDrawer} className="text-gray-600 hidden md:block"  ><Search /></button>
+        <button  className="text-gray-600 hidden md:block"  ><Link href='/search'><Search /></Link> </button>
         {/* user */}
         {user ? (  
               <Link href='/account'> 

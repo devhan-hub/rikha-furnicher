@@ -49,7 +49,7 @@ const HomeHeader = () => {
       <MobileNav/>
 
       <div className="flex items-center gap-4 order-3 ml-auto sm:mr-0">
-      <motion.button whileTap={{scale:0.9}}  className="relative bg-heroBack text-secondary p-1.5 rounded-full hidden  md:block"  ><Search  className="" /></motion.button>
+      <motion.button whileTap={{scale:0.9}}  className="relative bg-heroBack text-secondary p-1.5 rounded-full hidden  md:block"  ><Link href='/search'><Search /></Link></motion.button>
 
         {/* user */}
         {user ? (  

@@ -56,7 +56,7 @@ const Navbar = () => {
       ) : (
         <>
           {
-           pathname==='/'? <div className='w-full  z-50 '><HomeHeader/></div>:<div className="w-full z-50 shadow-md "><Header/></div>
+           pathname==='/'? <div className='w-full  z-50 '><HomeHeader/></div>:<div className="w-full z-50 shadow-md container "><Header/></div>
           
           }
           </>
