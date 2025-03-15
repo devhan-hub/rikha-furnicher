@@ -8,7 +8,7 @@ import { service } from '@/lib/mockproductdate'
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { motion } from "framer-motion"
 import ProductCard from "@/components/ProductCard"
-import { mock } from "@/lib/mockproductdate"
+import { feature } from "@/lib/product"
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -135,7 +135,7 @@ const handleReviw=()=>{
       <div>
         <h1 className="text-2xl md:text-3xl font-cinzel font-semibold">You may also like </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        <ProductCard data={mock}/>
+        <ProductCard data={feature}/>
 
         </div>
       </div>
